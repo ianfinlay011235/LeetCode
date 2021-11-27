@@ -1,2 +1,2 @@
 # LeetCode
-A collection of problems from LeetCode.com
+A collection of algorithm problem solutions from LeetCode.com
