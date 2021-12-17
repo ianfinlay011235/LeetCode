@@ -16,6 +16,7 @@ namespace LeetCodeLibrary.DataStructures.Tree
         //TODO: Fix to acommodate non-complete binary trees
         public static TreeNode BuildTree(this int?[] array)
         {
+            if (array.Length == 0) return null;
             TreeNode root = new TreeNode();
             root = InsertLevelOrder(array, root, 0);
             return root;
