@@ -41,8 +41,6 @@ namespace LeetCodeSolutionLibrary.Recursion
                         {
                             result += sub;
                         }
-                        //result += string.Join(
-                        //    "", Enumerable.Repeat(Decode(s.Substring(lo, i - lo)), count));
                     }
                 }
                 else if (stack.Count == 0)
