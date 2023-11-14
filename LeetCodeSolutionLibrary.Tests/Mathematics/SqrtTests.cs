@@ -1,4 +1,4 @@
-﻿using LeetCodeSolutionLibrary.MathFunctions;
+﻿using LeetCodeSolutionLibrary.Mathematics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace LeetCodeSolutionLibrary.Tests.MathFunctions
+namespace LeetCodeSolutionLibrary.Tests.Mathematics
 {
     public class SqrtTests
     {

@@ -8,7 +8,6 @@ namespace LeetCodeLibrary.Tests.DynamicProgramming
         [Theory]
         [InlineData(12, 3)]
         [InlineData(13, 2)]
-        //TODO: Add more test cases
         public void PerfectSquares_ShouldReturnExpectedValues(int input, int expected)
         {
             //Arrange

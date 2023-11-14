@@ -3,11 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeSolutionLibrary", "LeetCodeSolutionLibrary\LeetCodeSolutionLibrary.csproj", "{E251A2DF-1848-46EF-941C-36A133441C07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeSolutionLibrary", "LeetCodeSolutionLibrary\LeetCodeSolutionLibrary.csproj", "{E251A2DF-1848-46EF-941C-36A133441C07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeDataStructureLibrary", "LeetCodeDataStructureLibrary\LeetCodeDataStructureLibrary.csproj", "{3F0F744D-553B-42CD-BB8F-1949E2F64059}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeDataStructureLibrary", "LeetCodeDataStructureLibrary\LeetCodeDataStructureLibrary.csproj", "{3F0F744D-553B-42CD-BB8F-1949E2F64059}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCodeSolutionLibrary.Tests", "LeetCodeSolutionLibrary.Tests\LeetCodeSolutionLibrary.Tests.csproj", "{11B0A294-FB54-4958-8834-D93547B85F49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeSolutionLibrary.Tests", "LeetCodeSolutionLibrary.Tests\LeetCodeSolutionLibrary.Tests.csproj", "{11B0A294-FB54-4958-8834-D93547B85F49}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LeetCodeSql", "LeetCodeSql", "{C0CDD7FE-59A9-410F-804F-8F606B9B5AAE}"
+	ProjectSection(SolutionItems) = preProject
+		LeetCodeSql\CustomersWhoNeverOrder.sql = LeetCodeSql\CustomersWhoNeverOrder.sql
+		LeetCodeSql\DeleteDuplicateEmails.sql = LeetCodeSql\DeleteDuplicateEmails.sql
+		LeetCodeSql\DepartmentHighestSalary.sql = LeetCodeSql\DepartmentHighestSalary.sql
+		LeetCodeSql\DepartmentTopThreeSalaries.sql = LeetCodeSql\DepartmentTopThreeSalaries.sql
+		LeetCodeSql\DuplicateEmails.sql = LeetCodeSql\DuplicateEmails.sql
+		LeetCodeSql\GamePlayAnalysis1.sql = LeetCodeSql\GamePlayAnalysis1.sql
+		LeetCodeSql\NthHighestSalary.sql = LeetCodeSql\NthHighestSalary.sql
+		LeetCodeSql\RisingTemperature.sql = LeetCodeSql\RisingTemperature.sql
+		LeetCodeSql\SecondHighestSalary.sql = LeetCodeSql\SecondHighestSalary.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

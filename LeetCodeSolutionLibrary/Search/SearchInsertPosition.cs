@@ -7,30 +7,37 @@ using System.Threading.Tasks;
 namespace LeetCodeLibrary.Search
 {
     //https://leetcode.com/problems/search-insert-position/
+
     public class SearchInsertPosition
     {
+        /*
+         * Time Complexity: O(Log(N))
+         *  - N is the length of nums
+         *  
+         * Space Complexity: O(1)
+         */
         public int SearchInsert(int[] nums, int target)
         {
-            return BinarySearchHelper(nums, 0, nums.Length - 1, target);
-        }
+            int l = 0, r = nums.Length - 1;
+            int mid;
 
-        private int BinarySearchHelper(int[] nums, int l, int r, int x)
-        {
-            if (r >= l)
+            while (r >= l)
             {
-                int mid = l + (r - l) / 2;
+                mid = l + (r - l) / 2;
 
-                if (nums[mid] == x)
+                if (nums[mid] == target)
                 {
                     return mid;
                 }
 
-                if (nums[mid] > x)
+                if (nums[mid] > target)
                 {
-                    return BinarySearchHelper(nums, l, mid - 1, x);
+                    r = mid - 1;
                 }
-
-                return BinarySearchHelper(nums, mid + 1, r, x); //else nums[mid] < x
+                else
+                {
+                    l = mid + 1;
+                }
             }
 
             return l;

@@ -1,22 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LeetCodeLibrary.DataStructures.Tree
 {
     public static class TreeHelper
     {
-        //Builders
+        //Builder for complete binary tree
         public static TreeNode BuildTree(this int[] array)
         {
-            TreeNode root = new TreeNode();
-            root = InsertLevelOrder(array, root, 0);
-            return root;
-        }
-
-        //This method only works for creating complete binary trees
-        //TODO: Fix to acommodate non-complete binary trees
-        public static TreeNode BuildTree(this int?[] array)
-        {
-            if (array.Length == 0) return null;
             TreeNode root = new TreeNode();
             root = InsertLevelOrder(array, root, 0);
             return root;
@@ -40,21 +31,45 @@ namespace LeetCodeLibrary.DataStructures.Tree
             return root;
         }
 
-        public static TreeNode InsertLevelOrder(int?[] array, TreeNode root, int index)
+        //Builder for incomplete binary tree
+        //Code adapted from Steven's answer:
+        //https://stackoverflow.com/questions/37941318/how-to-build-an-incomplete-binary-tree-from-array-representation
+        public static TreeNode BuildTree(this int?[] array)
         {
-            //Base case for recursion
-            if (index < array.Length && array[index] != null)
+            if (array == null || array.Length == 0)
             {
-                TreeNode temp = new TreeNode((int)array[(int)index]);
-                root = temp;
-
-                //Insert left child
-                root.Left = InsertLevelOrder(array, root.Left, 2 * index + 1);
-
-                //Insert right child
-                root.Right = InsertLevelOrder(array, root.Right, 2 * index + 2);
+                return null;
             }
-            return root;
+
+            Queue<TreeNode> treeNodeQueue = new Queue<TreeNode>();
+            Queue<int?> integerQueue = new Queue<int?>();
+            for (int i = 0; i < array.Length; i++)
+            {
+                integerQueue.Enqueue(array[i]);
+            }
+
+            TreeNode treeNode = new TreeNode((int)integerQueue.Dequeue());
+            treeNodeQueue.Enqueue(treeNode);
+
+            while (integerQueue.Count > 0)
+            {
+                int? leftVal = integerQueue.Count == 0 ? null : integerQueue.Dequeue();
+                int? rightVal = integerQueue.Count == 0 ? null : integerQueue.Dequeue();
+                TreeNode current = treeNodeQueue.Dequeue();
+                if (leftVal != null)
+                {
+                    TreeNode left = new TreeNode((int)leftVal);
+                    current.Left = left;
+                    treeNodeQueue.Enqueue(left);
+                }
+                if (rightVal != null)
+                {
+                    TreeNode right = new TreeNode((int)rightVal);
+                    current.Right = right;
+                    treeNodeQueue.Enqueue(right);
+                }
+            }
+            return treeNode;
         }
 
         //To Array

@@ -5,6 +5,14 @@ namespace LeetCodeSolutionLibrary.Arrays
     //https://leetcode.com/problems/plus-one/
     public class PlusOne
     {
+        /*
+         * Time Complexity: O(N)
+         *  -N is the length of digits
+         * Space Complexity: O(N)
+         *  -In the case where the integer being represented by the array
+         *  is increased by a factor of 10, we need to create a new array
+         *  the size of N + 1
+         */
         public static int[] Plus1(int[] digits)
         {
             if (digits[digits.Length - 1] == 9)
@@ -30,22 +38,6 @@ namespace LeetCodeSolutionLibrary.Arrays
                 digits[digits.Length - 1]++;
             }
             return digits;
-
-            //while (digits[index] >= 9)
-            //{
-            //    if (index == 0)
-            //    {
-            //        if (digits[index] == 9)
-            //        {
-            //            return digits;
-            //        }
-            //        digits[index] = 0;
-            //        return digits.Prepend(1).ToArray();
-            //    }
-            //    digits[index] = 0;
-            //    digits[--index]++;
-            //}
-            //return digits;
         }
     }
 }

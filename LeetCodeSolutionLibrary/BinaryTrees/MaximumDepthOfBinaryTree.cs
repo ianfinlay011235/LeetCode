@@ -13,7 +13,7 @@ namespace LeetCodeSolutionLibrary.BinaryTrees
         public int MaxDepth(TreeNode root)
         {
             if (root == null) return 0;
-            return Math.Max(MaxDepth(root.Left), MaxDepth(root.Right)) + 1;
+            return System.Math.Max(MaxDepth(root.Left), MaxDepth(root.Right)) + 1;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace LeetCodeSolutionLibrary.BitManipulation
     {
         public bool IsPowerOfTwo(int n)
         {
-            return Math.Log2(n) % 1 == 0;
+            return System.Math.Log2(n) % 1 == 0;
         }
 
         //https://leetcode.com/problems/power-of-two/discuss/63974/Using-nand(n-1)-trick

@@ -12,7 +12,7 @@ namespace LeetCodeLibrary.Tests.BinaryTrees
         {
             //Arrange
             InvertBinaryTree ibt = new InvertBinaryTree();
-            TreeNode root = TreeHelper.InsertLevelOrder(arr, null, 0);
+            TreeNode root = arr.BuildTree();
 
             //Act
             TreeNode actual = ibt.InvertTree(root);

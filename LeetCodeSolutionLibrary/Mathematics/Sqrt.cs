@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCodeSolutionLibrary.MathFunctions
+namespace LeetCodeSolutionLibrary.Mathematics
 {
     public class Sqrt
     {

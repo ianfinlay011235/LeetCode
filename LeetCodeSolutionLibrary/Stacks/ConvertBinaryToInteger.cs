@@ -40,7 +40,7 @@ namespace LeetCodeLibrary.Stacks
 
             while (head != null)
             {
-                res = res << 1 | head.Val;   // res = res*2 + head.val;
+                res = res << 1 | head.Val;   // res = res*2 + head.Val;
                 head = head.Next;
             }
 
