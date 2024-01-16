@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LeetCodeSql", "LeetCodeSql"
 		LeetCodeSql\SecondHighestSalary.sql = LeetCodeSql\SecondHighestSalary.sql
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCodeScaffolder", "LeetCodeScaffolder\LeetCodeScaffolder.csproj", "{B0A51D2A-65E0-40CD-9952-E281D7D2EB60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{11B0A294-FB54-4958-8834-D93547B85F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11B0A294-FB54-4958-8834-D93547B85F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11B0A294-FB54-4958-8834-D93547B85F49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0A51D2A-65E0-40CD-9952-E281D7D2EB60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0A51D2A-65E0-40CD-9952-E281D7D2EB60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0A51D2A-65E0-40CD-9952-E281D7D2EB60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0A51D2A-65E0-40CD-9952-E281D7D2EB60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

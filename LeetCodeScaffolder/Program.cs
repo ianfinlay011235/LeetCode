@@ -10,7 +10,7 @@ namespace LeetCodeScaffolder
 
         static void Main(string[] args)
         {
-
+            //Get variable values
             Console.WriteLine("namespace:");
             string nameSpace = Console.ReadLine();
             string path = Path.Combine(BASE_DIRECTORY, "LeetCodeSolutionLibrary", nameSpace);
@@ -41,6 +41,7 @@ namespace LeetCodeScaffolder
             Console.WriteLine("method signature: example - \"int MethodName(string param1, int param2)\"");
             string methodSignature = Console.ReadLine();
 
+
             var files = new Dictionary<string, FileInfo>();
 
             files.Add(
@@ -53,6 +54,11 @@ namespace LeetCodeScaffolder
 
             foreach (var file in files.Values)
             {
+                if (file.Exists)
+                {
+                    Console.WriteLine("The files that you are trying to scaffold already exist. Terminating scaffolding process...");
+                    return;
+                }
                 file.Directory.Create();
             }
 
