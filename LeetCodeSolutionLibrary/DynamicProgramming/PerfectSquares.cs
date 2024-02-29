@@ -1,34 +1,29 @@
 ﻿using System;
+using System.Linq;
 
 namespace LeetCodeLibrary.DynamicProgramming
 {
     //https://leetcode.com/problems/perfect-squares/
+
     public class PerfectSquares
     {
         public int NumSquares(int n)
         {
-            int[] dp = new int[n + 1];
-            for (int i = 0; i < dp.Length; i++)
-            {
-                dp[i] = i;
-            }
+            int[] dp = Enumerable.Repeat(int.MaxValue, n + 1).ToArray();
 
             dp[0] = 0;
-            int count = 1;
-            while (count*count <= n)
+
+            for (int i = 1; i <= n; i++)
             {
-                int sq = count * count;
-                for (int i = sq; i < n + 1; i++)
+                int min = int.MaxValue;
+                for (int j = 1; j * j <= i; j++)
                 {
-                    dp[i] = Math.Min(dp[i-sq] + 1, dp[i]);
+                    min = Math.Min(min, dp[i - j * j] + 1);
                 }
-                count++;
+                dp[i] = min;
             }
 
-            return dp[n];
-            
+            return dp[n];            
         }
-
-        private bool IsPerfectSquare(int n) => Math.Sqrt(n) % 1 == 0;
     }
 }

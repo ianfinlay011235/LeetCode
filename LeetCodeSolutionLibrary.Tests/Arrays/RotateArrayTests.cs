@@ -12,7 +12,9 @@ namespace LeetCodeLibrary.Tests.Arrays
     {
         [Theory]
         [InlineData(new int[] { 1, 2, 3, 4, 5, 6, 7 }, 3, new int[] { 5, 6, 7, 1, 2, 3, 4 })]
-        //[InlineData(new int[] { -1, -100, 3, 99 }, 2, new int[] { 3, 99, -1, -100 })]
+        [InlineData(new int[] { -1, -100, 3, 99 }, 2, new int[] { 3, 99, -1, -100 })]
+        [InlineData(new int[] { 1, 2 }, 1, new int[] { 2, 1 })]
+        [InlineData(new int[] { 1, 2, 3 }, 4, new int[] { 3, 1, 2 })]
         public void Rotate_ShouldRotateArrayByKSteps(int[] actual, int k, int[] expected)
         {
             //Arrange

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace LeetCodeScaffolder
 {
@@ -10,60 +11,101 @@ namespace LeetCodeScaffolder
 
         static void Main(string[] args)
         {
-            //Get variable values
-            Console.WriteLine("namespace:");
-            string nameSpace = Console.ReadLine();
-            string path = Path.Combine(BASE_DIRECTORY, "LeetCodeSolutionLibrary", nameSpace);
-            while (!Directory.Exists(path))
+            try
             {
-                Console.WriteLine($"The namespace \"{nameSpace}\" doesn't exist, would you like to create it? (Y/N):");
-                string response = Console.ReadLine();
-                if (response.ToLower() == "y")
-                {
-                    break;
-                }
-                else if (response.ToLower() == "n")
-                {
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid response. Enter Y or N.");
-                }
+                Scaffolder scaffolder = new Scaffolder();
+                GetScaffoldVariables(scaffolder);
+                scaffolder.Scaffold();
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        private static void GetScaffoldVariables(Scaffolder scaffolder)
+        {
+            scaffolder.NameSpace = GetNameSpace();
 
             Console.WriteLine("url:");
-            string url = Console.ReadLine();
+            scaffolder.Url = Console.ReadLine();
 
             Console.WriteLine("class name:");
-            string className = Console.ReadLine();
+            scaffolder.SolutionClassName = Console.ReadLine();
+            scaffolder.TestClassName = scaffolder.SolutionClassName + "Tests";
+
+            scaffolder.Files = GetFileInfos(scaffolder);
 
             Console.WriteLine("method signature: example - \"int MethodName(string param1, int param2)\"");
             string methodSignature = Console.ReadLine();
+            AssignMethodVariablesToScaffolder(scaffolder, methodSignature);
+        }
 
+        private static string GetNameSpace()
+        {
+            Console.WriteLine("namespace:");
+            string nameSpace = Console.ReadLine();
 
-            var files = new Dictionary<string, FileInfo>();
+            if (!Directory.Exists(Path.Combine(BASE_DIRECTORY, "LeetCodeSolutionLibrary", nameSpace)))
+            {
+                throw new Exception($"Namespace \"{nameSpace}\" doesn't exist.");
+            }
 
-            files.Add(
-                "SolutionClass", 
-                new FileInfo(Path.Combine(BASE_DIRECTORY, "LeetCodeSolutionLibrary", nameSpace, $"{className}.cs")));
+            return nameSpace;
+        }
 
-            files.Add(
-                "TestClass",
-                new FileInfo(Path.Combine(BASE_DIRECTORY, "LeetCodeSolutionLibrary.Tests", nameSpace, $"{className}Tests.cs")));
+        private static void AssignMethodVariablesToScaffolder(Scaffolder scaffolder, string methodSignature)
+        {
+            scaffolder.MethodReturnType = methodSignature.Substring(0, methodSignature.IndexOf(' '));
 
-            foreach (var file in files.Values)
+            int nameIndexStart = methodSignature.IndexOf(' ') + 1;
+            int nameLength = methodSignature.IndexOf('(') - nameIndexStart;
+            scaffolder.MethodName = methodSignature.Substring(nameIndexStart, nameLength);
+
+            int parameterIndexStart = methodSignature.IndexOf('(') + 1;
+            int paramterLength = methodSignature.IndexOf(')') - parameterIndexStart;
+            scaffolder.MethodParameters = methodSignature
+                .Substring(parameterIndexStart, paramterLength)
+                .Split(", ")
+                .ToList();
+        }
+
+        private static Dictionary<string, FileInfo> GetFileInfos(Scaffolder scaffolder)
+        {
+            var fileInfos = new Dictionary<string, FileInfo>();
+
+            fileInfos.Add(
+                "Solution",
+                new FileInfo(
+                    Path.Combine(
+                        BASE_DIRECTORY,
+                        "LeetCodeSolutionLibrary",
+                        scaffolder.NameSpace,
+                        $"{scaffolder.SolutionClassName}.cs")));
+
+            fileInfos.Add(
+                "Tests",
+                new FileInfo(
+                    Path.Combine(
+                        BASE_DIRECTORY,
+                        "LeetCodeSolutionLibrary.Tests",
+                        scaffolder.NameSpace,
+                        $"{scaffolder.TestClassName}.cs")));
+
+            ValidateFileInfos(fileInfos);
+
+            return fileInfos;
+        }
+
+        private static void ValidateFileInfos(Dictionary<string, FileInfo> fileInfos)
+        {
+            foreach (var file in fileInfos.Values)
             {
                 if (file.Exists)
                 {
-                    Console.WriteLine("The files that you are trying to scaffold already exist. Terminating scaffolding process...");
-                    return;
+                    throw new Exception("The files that you are trying to scaffold already exist.");
                 }
-                file.Directory.Create();
             }
-
-            Scaffolder s = new Scaffolder();
-            s.Scaffold(files, nameSpace, url, className, methodSignature);
         }
     }
 }

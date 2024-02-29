@@ -17,10 +17,10 @@ namespace LeetCodeLibrary.Tests.Sums
             IList<IList<int>> actual = ts.Three_Sum(input);
 
             //Assert
-            for (int i = 0; i < expected.Count; i++)
+            Assert.Equal(expected.Count, actual.Count);
+            foreach (var list in expected)
             {
-                //Hard to test for arrangements
-                Assert.True(true);
+                Assert.Contains(list, actual);
             }
         }
 
