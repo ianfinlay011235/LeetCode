@@ -11,37 +11,31 @@ namespace LeetCodeSolutionLibrary.Arrays
     public class MaximumSubsequenceScore
     {
         /*
-         * Time Complexity: O()
-         * Space Complexity: O()
+         * Time Complexity: O(n) where n is the length of nums1/nums2
+         * Space Complexity: O(n) where n is equal to k: the size of the heap
          */
         public long MaxScore(int[] nums1, int[] nums2, int k)
         {
-            int n = nums1.Length;
-            int[][] pairs = new int[n][];
-            for (int i = 0; i < n; i++)
+            long result;
+            long sum = 0;
+            PriorityQueue<int, int> heap = new PriorityQueue<int, int>();
+
+            Array.Sort(nums2, nums1);
+
+            for (int i = 1; i <= k; i++)
             {
-                pairs[i] = new int[] { nums1[i], nums2[i] };
+                sum += nums1[^i];
+                heap.Enqueue(nums1[^i], nums1[^i]);
             }
-            //Array.Sort(pairs, (a, b) => a[0] - b[0]);
-            pairs = pairs.OrderBy(x => x[0] - x[1]).ToArray();
-            
-            PriorityQueue<int, int> pq = new PriorityQueue<int, int>();
-            long res = 0;
-            long totalSum = 0;
-            for (int i = 0; i < n; i++)
+            result = sum * nums2[^k];
+
+            for (int i = k + 1; i <= nums1.Length; i++)
             {
-                pq.Enqueue(pairs[i][0], pairs[i][0] - pairs[i][1]);
-                totalSum += pairs[i][0];
-                if (pq.Count > k)
-                {
-                    totalSum -= pq.Dequeue();
-                }
-                if (pq.Count == k)
-                {
-                    res = System.Math.Max(res, totalSum * pairs[i][1]);
-                }
+                sum = sum + nums1[^i] - heap.EnqueueDequeue(nums1[^i], nums1[^i]);
+                result = Math.Max(result, sum * nums2[^i]);
             }
-            return res;
+
+            return result;
         }
     }
 }
